@@ -1,9 +1,30 @@
-//an inquirer list loads:
-    //[POST]
-    //[BID]
-    //[EXIT]
+//users are able to:
+    //create an item, task, job, or project
+    //bid on it (and others already added)
 
 
+var inquirer = require("inquirer");
+
+
+inquirer.prompt([
+    {
+        type: "list",
+        message: "Welcome to Great Bay! Choose an action item from below:",
+        choices: ["[POST]", "[BID]", "[EXIT]"],
+        name: "openingPrompt"
+    }
+])
+.then(function(inquirerResponses) {
+    var openPrompt = inquirerResponses.openingPrompt;
+
+    if (openPrompt === "[POST]") {
+        console.log(`post hit`);
+    } else if (openPrompt === "[BID]") {
+        console.log(`bid hit`);
+    } else if (openPrompt === "[EXIT]") {
+        console.log(`BYEEEE`);
+    }
+})
 
     //[POST]
         //inquirer prompt:
@@ -30,6 +51,4 @@
 
 
 
-//users are able to:
-    //create an item, task, job, or project
-    //bid on it (and others already added)
+
