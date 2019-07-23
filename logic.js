@@ -18,7 +18,27 @@ inquirer.prompt([
     var openPrompt = inquirerResponses.openingPrompt;
 
     if (openPrompt === "[POST]") {
-        console.log(`post hit`);
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "Name of the item?",
+                name: "itemName"
+            },
+            {
+                type: "input",
+                message: "What category does this fall under (collectable, item, service, etc.)?",
+                name: "itemCategory"
+            },
+            {
+                type: "input",
+                message: "What is the starting price of the item (bids must be greater than this amount to be valid)",
+                name: "startingBid"
+            }
+        ]).then(function(inquirerResponses) {
+            console.log(`Name: ${inquirerResponses.itemName}`);
+            console.log(`Category: ${inquirerResponses.itemCategory}`);
+            console.log(`Starting bid: ${inquirerResponses.startingBid}`);
+        })
     } else if (openPrompt === "[BID]") {
         console.log(`bid hit`);
     } else if (openPrompt === "[EXIT]") {
@@ -27,10 +47,7 @@ inquirer.prompt([
 })
 
     //[POST]
-        //inquirer prompt:
-            //NAME
-            //CATEGORY
-            //STARTING PRICE
+
         //this info is added to the database
     //return to main inquirer prompt
     
