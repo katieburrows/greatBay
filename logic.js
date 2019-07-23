@@ -2,8 +2,20 @@
     //create an item, task, job, or project
     //bid on it (and others already added)
 
-
+var mysql = require("mysql");
 var inquirer = require("inquirer");
+
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 8889,
+    user: "root",
+    password: "root",
+    database: "greatBayDB"
+});
+
+connection.connect(function(err) {
+    if (err) throw err;
+})
 
 
 inquirer.prompt([
