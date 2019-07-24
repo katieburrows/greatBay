@@ -15,49 +15,62 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
+
+    startInquiry();
 })
 
+function startInquiry() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Welcome to Great Bay! Choose an action item from below:",
+            choices: ["[POST]", "[BID]", "[EXIT]"],
+            name: "openingPrompt"
+        }
+    ])
+    .then(function(inquirerResponses) {
+        var openPrompt = inquirerResponses.openingPrompt;
 
-inquirer.prompt([
-    {
-        type: "list",
-        message: "Welcome to Great Bay! Choose an action item from below:",
-        choices: ["[POST]", "[BID]", "[EXIT]"],
-        name: "openingPrompt"
-    }
-])
-.then(function(inquirerResponses) {
-    var openPrompt = inquirerResponses.openingPrompt;
+        if (openPrompt === "[POST]") {
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "Name of the item?",
+                    name: "itemName"
+                },
+                {
+                    type: "input",
+                    message: "What category does this fall under (collectable, item, service, etc.)?",
+                    name: "itemCategory"
+                },
+                {
+                    type: "input",
+                    message: "What is the starting price of the item (bids must be greater than this amount to be valid)",
+                    name: "startingBid"
+                }
+            ]).then(function(inquirerResponses) {
+                var itemName = inquirerResponses.itemName;
+                var itemCategory = inquirerResponses.itemCategory;
+                var startingBid = inquirerResponses.startingBid;
 
-    if (openPrompt === "[POST]") {
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "Name of the item?",
-                name: "itemName"
-            },
-            {
-                type: "input",
-                message: "What category does this fall under (collectable, item, service, etc.)?",
-                name: "itemCategory"
-            },
-            {
-                type: "input",
-                message: "What is the starting price of the item (bids must be greater than this amount to be valid)",
-                name: "startingBid"
-            }
-        ]).then(function(inquirerResponses) {
-            console.log(`Name: ${inquirerResponses.itemName}`);
-            console.log(`Category: ${inquirerResponses.itemCategory}`);
-            console.log(`Starting bid: ${inquirerResponses.startingBid}`);
-        })
-    } else if (openPrompt === "[BID]") {
-        console.log(`bid hit`);
-    } else if (openPrompt === "[EXIT]") {
-        console.log(`BYEEEE`);
-    }
-})
-
+                connection.query("INSERT INTO products SET ?",
+                [
+                    {
+                        itemName: itemName,
+                        category: itemCategory,
+                        price: startingBid
+                    }
+                ], function(err) {
+                    if (err) throw err;
+                })
+            })
+        } else if (openPrompt === "[BID]") {
+            console.log(`bid hit`);
+        } else if (openPrompt === "[EXIT]") {
+            console.log(`BYEEEE`);
+        }
+    })
+}
     //[POST]
 
         //this info is added to the database
