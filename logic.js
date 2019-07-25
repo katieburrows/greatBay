@@ -79,8 +79,28 @@ function startInquiry() {
             ]).then(function(inquirerResponses) {
                 var selection = inquirerResponses.categorySelection;
                 if (selection === "[Collectables]") {
-                    console.log(`collectables hit`);
-                    connection.end();
+
+                    
+                    connection.query("SELECT * FROM products WHERE ?", 
+                    [
+                        {
+                            category: "Collectables"
+                        }
+                    ], function(err, res){
+                        if (err) throw err;
+                
+                        console.log(res);
+                    });
+                        
+                    
+
+
+
+
+
+
+
+
                 } else if (selection === "[Services]") {
                     console.log(`Services hit`);
                     connection.end();
@@ -103,7 +123,7 @@ function startInquiry() {
 
 
     //[BID]
-        //inquirer list of category to bid on
+        
         //inquirer list of items within the chosen category they can bid on
         //once an item is selected to bid on:
             //inquirer prompt: "how much would you like to bid?"
