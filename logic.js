@@ -46,7 +46,13 @@ function startInquiry() {
                 {
                     type: "input",
                     message: "What is the starting price of the item (bids must be greater than this amount to be valid)",
-                    name: "startingBid"
+                    name: "startingBid",
+                    validate: function(value) {
+                        if (isNaN(value) === false) {
+                          return true;
+                        }
+                        return false;
+                      }
                 }
             ]).then(function(inquirerResponses) {
                 var itemName = inquirerResponses.itemName;
