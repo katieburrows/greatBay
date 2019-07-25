@@ -79,7 +79,6 @@ function startInquiry() {
             ]).then(function(inquirerResponses) {
                 var selection = inquirerResponses.categorySelection;
                 if (selection === "[Collectables]") {
-
                     
                     connection.query("SELECT * FROM products WHERE ?", 
                     [
@@ -91,19 +90,20 @@ function startInquiry() {
                 
                         console.log(res);
                     });
-                        
                     
-
-
-
-
-
-
-
-
                 } else if (selection === "[Services]") {
-                    console.log(`Services hit`);
-                    connection.end();
+
+                    connection.query("SELECT * FROM products WHERE ?",
+                    [
+                        {
+                            category: "Services"
+                        }
+                    ], function(err, res) {
+                        if (err) throw err;
+
+                        console.log(res);
+                    });
+
                 } else if (selection === "[Items]") {
                     console.log(`Items hit`);
                     connection.end();
