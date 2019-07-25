@@ -105,8 +105,17 @@ function startInquiry() {
                     });
 
                 } else if (selection === "[Items]") {
-                    console.log(`Items hit`);
-                    connection.end();
+
+                    connection.query("SELECT * FROM products WHERE ?",
+                    [
+                        {
+                            category: "Items"
+                        }
+                    ], function(err, res) {
+                        if (err) throw err;
+
+                        console.log(res);
+                    });
                 }
 
                 
