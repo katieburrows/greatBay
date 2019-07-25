@@ -40,7 +40,7 @@ function startInquiry() {
                 },
                 {
                     type: "input",
-                    message: "What category does this fall under (collectable, item, service, etc.)?",
+                    message: "What category does this fall under (may only fall under the following categories: Collectable, Item, Services)?",
                     name: "itemCategory"
                 },
                 {
@@ -69,7 +69,29 @@ function startInquiry() {
                 startInquiry();
             })
         } else if (openPrompt === "[BID]") {
-            console.log(`bid hit`);
+            inquirer.prompt([
+                {
+                    type: "list",
+                    message: "Choose a category to bid on:",
+                    choices: ["[Collectables]", "[Services]", "[Items]" ],
+                    name: "categorySelection"
+                }
+            ]).then(function(inquirerResponses) {
+                var selection = inquirerResponses.categorySelection;
+                if (selection === "[Collectables]") {
+                    console.log(`collectables hit`);
+                    connection.end();
+                } else if (selection === "[Services]") {
+                    console.log(`Services hit`);
+                    connection.end();
+                } else if (selection === "[Items]") {
+                    console.log(`Items hit`);
+                    connection.end();
+                }
+
+                
+            })
+            
         } else if (openPrompt === "[EXIT]") {
             console.log(`BYEEEE`);
             connection.end();
