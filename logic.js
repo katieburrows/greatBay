@@ -62,19 +62,21 @@ function startInquiry() {
                     }
                 ], function(err) {
                     if (err) throw err;
+                    
+                    console.log(`${itemName} added to database!`);
                 })
+
+                startInquiry();
             })
         } else if (openPrompt === "[BID]") {
             console.log(`bid hit`);
         } else if (openPrompt === "[EXIT]") {
             console.log(`BYEEEE`);
+            connection.end();
         }
     })
 }
-    //[POST]
 
-        //this info is added to the database
-    //return to main inquirer prompt
     
 
 
