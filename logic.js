@@ -40,7 +40,7 @@ function startInquiry() {
                 },
                 {
                     type: "input",
-                    message: "What category does this fall under (may only fall under the following categories: Collectable, Item, Services)?",
+                    message: "What category does this fall under (may only fall under the following categories: Collectables, Items, Services)?",
                     name: "itemCategory"
                 },
                 {
@@ -100,8 +100,12 @@ function startInquiry() {
                         }
                     ], function(err, res) {
                         if (err) throw err;
+                        for (var i = 0; i < res.length; i++) {
+                            inquirer.prompt([
 
-                        console.log(res);
+                            ])
+                        }
+                        
                     });
 
                 } else if (selection === "[Items]") {
