@@ -94,14 +94,11 @@ function startInquiry() {
                     ], function(err, res){
                         if (err) throw err;
                 
-
-
-
                         inquirer.prompt([
                             
                             {
                                 type: "list",
-                                message: "Choose from the below to bid on:",
+                                message: "Choose an item from below to bid on:",
                                 choices: function() {
                                     var choiceArray = [];
                                     for (var i = 0; i < res.length; i++) {
@@ -113,11 +110,10 @@ function startInquiry() {
                                 
                             }
                             
-
-                        ]).then(function(err, res) {
-                            if (err) throw err;
+                        ]).then(function(answer) {
                             
-                            console.log(`.then hit correctly in theory`);
+                            
+                            console.log(`chosen: ${answer.bidChoices}`);
                         })
                     });
                     
