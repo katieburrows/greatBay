@@ -94,7 +94,31 @@ function startInquiry() {
                     ], function(err, res){
                         if (err) throw err;
                 
-                        console.log(res);
+
+
+
+                        inquirer.prompt([
+                            
+                            {
+                                type: "list",
+                                message: "Choose from the below to bid on:",
+                                choices: function() {
+                                    var choiceArray = [];
+                                    for (var i = 0; i < res.length; i++) {
+                                        choiceArray.push(res[i].itemName);
+                                    }
+                                    return choiceArray;
+                                },
+                                name: "bidChoices"
+                                
+                            }
+                            
+
+                        ]).then(function(err, res) {
+                            if (err) throw err;
+                            
+                            console.log(`.then hit correctly in theory`);
+                        })
                     });
                     
                 } else if (selection === "[Services]") {

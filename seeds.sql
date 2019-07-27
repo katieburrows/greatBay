@@ -22,3 +22,5 @@ VALUES ("Commemorative Princess Diana Beanie Baby", "Collectables", 50000.00),
 ("My MacBook Pro from college", "Item", 10.00), 
 ("Broken mirror", "Item", 5.00), 
 ("Landscaping gravel", "Item", 400.00); 
+
+SELECT * FROM products;
