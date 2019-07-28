@@ -1,7 +1,3 @@
-//users are able to:
-    //create an item, task, job, or project
-    //bid on it (and others already added)
-
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
@@ -189,8 +185,6 @@ function startInquiry() {
 
 
     //[BID]
-        
-        //inquirer list of items within the chosen category they can bid on
         //once an item is selected to bid on:
             //inquirer prompt: "how much would you like to bid?"
                 //compare bid to the starting price/previous high bid
