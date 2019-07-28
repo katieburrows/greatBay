@@ -156,7 +156,22 @@ function startInquiry() {
                     ], function(err, res) {
                         if (err) throw err;
 
-                        console.log(res);
+                        inquirer.prompt([
+                            {
+                                type: "list",
+                                message: "Choose an item to bid on:",
+                                choices: function() {
+                                    var choiceArray = [];
+                                    for (var i = 0; i < res.length; i++) {
+                                        choiceArray.push(res[i].itemName);
+                                    }
+                                    return choiceArray;
+                                },
+                                name: "bidChoices"
+                            }
+                        ]).then(function(answer) {
+                            console.log(`chosen: ${answer.bidChoices}`);
+                        })
                     });
                 }
 
