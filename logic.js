@@ -166,7 +166,31 @@ function startInquiry() {
                                 name: "bidChoices"
                             }
                         ]).then(function(answer) {
-                            console.log(`chosen: ${answer.bidChoices}`);
+                            var itemToBidOn = answer.itemName;
+                            connection.query("SELECT * FROM products WHERE ?",
+                            [
+                                {
+                                    itemName: itemToBidOn
+                                }
+                            ], function(err, res) {
+                                if (err) throw err;
+                                inquirer.prompt([
+                                    {
+                                        type: "input",
+                                        message: "How much would you like to bid on this item?",
+                                        name: "bidAmount",
+                                        validate: function(value) {
+                                            if (isNaN(value) === false) {
+                                              return true;
+                                            }
+                                            return false;
+                                          }
+                                    }
+                                ]).then(function(answer) {
+                                    console.log(`success`);
+                                })
+                            })
+                            
                         })
                     });
                 }
