@@ -16,11 +16,11 @@ INSERT INTO products (itemName, category, price)
 VALUES ("Commemorative Princess Diana Beanie Baby", "Collectables", 50000.00),
 ("Jurassic Park 6-Pog Hologram Set With Slammer", "Collectables", 1000000.00),
 ("Kid Cuisine Furby", "Collectables", 200.00), 
-("Foot Rub", "Service", 3.00), 
-("Lawn Mowing", "Service", 25.00), 
-("Dinner Chef", "Service", 200.00), 
-("My MacBook Pro from college", "Item", 10.00), 
-("Broken mirror", "Item", 5.00), 
-("Landscaping gravel", "Item", 400.00); 
+("Foot Rub", "Services", 3.00), 
+("Lawn Mowing", "Services", 25.00), 
+("Dinner Chef", "Services", 200.00), 
+("My MacBook Pro from college", "Items", 10.00), 
+("Broken mirror", "Items", 5.00), 
+("Landscaping gravel", "Items", 400.00); 
 
 SELECT * FROM products;

@@ -98,7 +98,7 @@ function startInquiry() {
                             
                             {
                                 type: "list",
-                                message: "Choose an item from below to bid on:",
+                                message: "Choose an item to bid on:",
                                 choices: function() {
                                     var choiceArray = [];
                                     for (var i = 0; i < res.length; i++) {
@@ -126,11 +126,23 @@ function startInquiry() {
                         }
                     ], function(err, res) {
                         if (err) throw err;
-                        for (var i = 0; i < res.length; i++) {
-                            inquirer.prompt([
-
-                            ])
-                        }
+                        inquirer.prompt([
+                            {
+                                type: "list",
+                                message: "Choose an item to bid on:",
+                                choices: function() {
+                                    var choiceArray = [];
+                                    for (var i = 0; i < res.length; i++) {
+                                        choiceArray.push(res[i].itemName);
+                                    }
+                                    return choiceArray;
+                                },
+                                name: "bidChoices"
+                            }
+                        ]).then(function(answer) {
+                            console.log(`chosen: ${answer.bidChoices}`);
+                        })
+                        
                         
                     });
 
