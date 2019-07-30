@@ -166,28 +166,33 @@ function startInquiry() {
                                 name: "bidChoices"
                             }
                         ]).then(function(answer) {
-                            var itemToBidOn = answer.itemName;
+                            
                             connection.query("SELECT * FROM products WHERE ?",
                             [
                                 {
-                                    itemName: itemToBidOn
+                                    itemName: answer.bidChoices 
                                 }
-                            ], function(err, res) {
+                            ], function(err, response) {
                                 if (err) throw err;
+
+                                console.log();
                                 inquirer.prompt([
                                     {
                                         type: "input",
                                         message: "How much would you like to bid on this item?",
                                         name: "bidAmount",
                                         validate: function(value) {
-                                            if (isNaN(value) === false) {
-                                              return true;
+                                            if (isNaN(value) === false && parseInt(value) > parseInt(response[0].price)) {
+                                                
+                                                return true;
                                             }
                                             return false;
                                           }
                                     }
+                                    
                                 ]).then(function(answer) {
                                     console.log(`success`);
+                                    
                                 })
                             })
                             
