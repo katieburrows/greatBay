@@ -1,4 +1,4 @@
-# greatBay
+                                                    Great Bay
 
 Great Bay--a knockoff of eBay!
 
